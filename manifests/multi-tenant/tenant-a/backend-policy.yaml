@@ -1,0 +1,22 @@
+---
+# ============================================
+# manifests/multi-tenant/tenant-a/03-backend-policy.yaml
+# Tenant A Backend Traffic Policy
+# ============================================
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: tenant-a-backend-policy
+  namespace: tenant-a
+  labels:
+    tenant: tenant-a
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: tenant-a-route
+  timeout:
+    tcp:
+      connectTimeout: 30s
+    http:
+      requestTimeout: 60s

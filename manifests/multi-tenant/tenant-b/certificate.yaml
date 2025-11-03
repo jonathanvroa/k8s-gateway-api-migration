@@ -1,0 +1,16 @@
+# ============================================
+# manifests/multi-tenant/tenant-b/certificate.yaml
+# Multi-tenant example: Tenant B Certificate
+# ============================================
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tenant-b-tls
+  namespace: tenant-b
+spec:
+  secretName: tenant-b-tls
+  issuerRef:
+    name: letsencrypt-dev
+    kind: ClusterIssuer
+  dnsNames:
+    - "tenant-b.example.com"

@@ -1,0 +1,40 @@
+# ============================================
+# manifests/multi-tenant/tenant-b/httproute.yaml
+# Multi-tenant example: Tenant B HTTPRoute
+# ============================================
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: tenant-b-route
+  namespace: tenant-b
+  labels:
+    tenant: tenant-b
+spec:
+  parentRefs:
+    - name: main-gateway
+      namespace: envoy-gateway-system
+      sectionName: https
+  hostnames:
+    - "tenant-b.example.com"
+  rules:
+    # Rule 1: Root path redirection to /tenant-a/home
+    - matches:
+        - path:
+            type: PathPrefix
+            value: "/"
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: "/tenant-b/home"
+            statusCode: 301
+    # Rule 2: All other traffic to backend
+    - matches:
+        - path:
+            type: PathPrefix
+            value: "/"
+      backendRefs:
+        - name: shared-backend
+          namespace: backend-services
+          port: 8000

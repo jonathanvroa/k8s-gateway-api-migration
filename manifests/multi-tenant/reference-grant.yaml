@@ -1,0 +1,21 @@
+# ============================================
+# manifests/multi-tenant/reference-grant.yaml
+# Multi-tenant: ReferenceGrant for all tenants
+# ============================================
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-all-tenants-to-backend
+  namespace: backend-services
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      namespace: tenant-a
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      namespace: tenant-b
+  to:
+    - group: ""
+      kind: Service
+      name: shared-backend
