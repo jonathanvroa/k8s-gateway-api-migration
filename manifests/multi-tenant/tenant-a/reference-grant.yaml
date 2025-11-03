@@ -1,0 +1,17 @@
+# ============================================
+# Multi-tenant: ReferenceGrant for all tenants
+# ============================================
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-all-gateway-to-secret-cert-tenant-a
+  namespace: backend-services
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: envoy-gateway-system
+  to:
+    - group: ""
+      kind: Secret
+      name: tenant-a-tls
