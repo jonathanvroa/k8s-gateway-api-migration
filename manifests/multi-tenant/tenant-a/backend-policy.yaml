@@ -1,6 +1,5 @@
 ---
 # ============================================
-# manifests/multi-tenant/tenant-a/03-backend-policy.yaml
 # Tenant A Backend Traffic Policy
 # ============================================
 apiVersion: gateway.envoyproxy.io/v1alpha1

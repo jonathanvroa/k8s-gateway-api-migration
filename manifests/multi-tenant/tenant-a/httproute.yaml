@@ -1,5 +1,4 @@
 # ============================================
-# manifests/multi-tenant/tenant-a/httproute.yaml
 # Multi-tenant example: Tenant A HTTPRoute
 # ============================================
 apiVersion: gateway.networking.k8s.io/v1
