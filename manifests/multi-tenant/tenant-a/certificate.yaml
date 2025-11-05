@@ -1,5 +1,4 @@
 # ============================================
-# manifests/multi-tenant/tenant-a/certificate.yaml
 # Multi-tenant example: Tenant A Certificate
 # ============================================
 apiVersion: cert-manager.io/v1

@@ -1,5 +1,4 @@
 # ============================================
-# manifests/multi-tenant/reference-grant.yaml
 # Multi-tenant: ReferenceGrant for all tenants
 # ============================================
 apiVersion: gateway.networking.k8s.io/v1beta1
